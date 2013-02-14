@@ -1,0 +1,6 @@
+<li class="match">
+  <a href="#">
+    <img src="<%= @image %>" />
+    <span class="name"><%= @name %></span>
+  </a>
+</li>

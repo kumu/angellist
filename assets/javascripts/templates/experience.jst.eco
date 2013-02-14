@@ -1,0 +1,12 @@
+<header class="experience-header"></header>
+
+<div class="map-container">
+    <div class="map graph"></div>
+
+    <div id="attic" style="display:none">
+        <!-- all screenshots will be rendered into this element and shown via fancybox -->
+        <img id="screenshot" />
+    </div>
+</div>
+
+<div class="experience-form"></div>

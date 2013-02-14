@@ -1,0 +1,28 @@
+<div class="inner">
+	<img src="assets/images/angel-experience.png" />
+
+	<form>
+		<p class="error"></p>
+
+		<div class="inputs">
+			<input type="search" class="search-query" placeholder="Startup, Person, Market or Location" />
+			
+			<p class="hint">
+				Find a startup at <a href="http://angel.co" target="_blank">angel.co</a>
+			</p>
+		</div>
+	</form>
+	
+	<div class="status">
+    	Searching... <span class="spinner"></span>
+  	</div>
+	
+	<div class="results">
+	  <ul class="matches"></ul>
+	  <p>Not what you were looking for? <a href="#" class="reset">Search Again</a></p>
+	</div>
+	
+	<div class="title">
+		The <strong>AngelList</strong> Experience, Powered by <strong>Kumu</strong>
+	</div>
+</div>
