@@ -1,11 +1,16 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-# Maintain your gem's version:
-# require "experience/version"
-
-# Describe your gem and declare its dependencies:
+#
+# Make sure to edit Experience.namespace in lib/experience.rb
+#
+#
+# Include the gem as follows:
+# gem 'angellist-experience', :path => '../experiences/angellist', :require => 'experience'
+#
+# The shared require and module name allow us to easily swap experiences within the main app
+#
 Gem::Specification.new do |s|
-  s.name        = "experience"
+  s.name        = "angellist-experience"
   s.version     = "0.0.1"
   s.authors     = ["Ryan Mohr"]
   s.email       = ["ryan@kumupowered.com"]

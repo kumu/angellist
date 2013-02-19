@@ -1,5 +1,5 @@
 <div class="inner">
-	<img src="/assets/experience/angel-experience.png" />
+	<img src="/assets/experience/angellist-logo.png" />
 
 	<form>
 		<p class="error"></p>
@@ -14,8 +14,8 @@
 	</form>
 	
 	<div class="status">
-    	Searching... <span class="spinner"></span>
-  	</div>
+    Searching... <span class="spinner"></span>
+  </div>
 	
 	<div class="results">
 	  <ul class="matches"></ul>

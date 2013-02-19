@@ -1,4 +1,6 @@
 Dummy::Application.routes.draw do
+  mount Experience::Engine, :at => '/experience'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

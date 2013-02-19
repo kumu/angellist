@@ -146,7 +146,8 @@ class Experience extends Backbone.View
         # reset the placement so new searches are placed properly
         @placement.set('origin', null)
 
-        _.delay((=> @map.zoomFit()), 1500)
+        # 1.5 seconds feels too long
+        _.delay((=> @map.zoomFit()), 1200)
 
 
 namespace 'AngellistExperience', (exports) ->
