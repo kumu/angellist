@@ -23,18 +23,7 @@ class Model extends Backbone.Model
     private
     ###
     initializeContext: =>
-        # should add setCurrent* helpers for this instead
-        window.currentAccount = new Account({virtual: true})
-        window.currentMembership = new Membership({role: 'observer'})
-        window.able = new Able(currentMembership)
-
-        # do we really need to fake this structure or is there another layer
-        # we should be working within that sits on top of the account/workspace structure
-        Attributes.account = window.currentAccount
-        Attributes.reset({fields: Attributes.core})
-        Attributes.fields.each((field) -> field.save()) # force virtual id to be assigned
-
-        currentAccount.load(@blueprint)
+        Context.build(@blueprint)
 
         @mapModel = new MapModel({
             mode: 'experience'

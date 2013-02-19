@@ -7,6 +7,8 @@ mixins =
 
 
 blueprint =
+    name: 'The AngelList Experience'
+
     defaults:
         directed: true # set to false for release
     
@@ -27,17 +29,9 @@ blueprint =
         # we're redefining the core attributes here until we have a better solution
         'Element Type':
             values: ['Startup', 'User', 'Market', 'Location']
-            settings: {pooled: true, core: true, single: true, format: 'value'}
         
         'Connection Type':
             values: ['Founder', 'Investor', 'Advisor', 'Employee']
-            settings: {pooled: true, core: true, single: true, format: 'value'}
-        
-        'Summary':
-            settings: {pooled: false, core: true, single: true, format: 'blurb'}
-
-        'Tags':
-            settings: {pooled: true, core: true, single: false, format: 'tag'}
 
         'Media':
             settings: {pooled: false, core: false, single: false, format: 'blurb'}
