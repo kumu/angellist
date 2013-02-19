@@ -57,8 +57,7 @@ class Form extends Backbone.View
 			@error('No matches found. Try again!')
 		else
 			@$el.addClass('matched')
-			# should load immediately on direct match to name (or slug?)
-			
+
 			# &amp; only one giving us a problem for now
 			decode = (string) -> string.replace(/&amp;/g, '&')
 			
@@ -78,8 +77,6 @@ class Form extends Backbone.View
 	exploreMatch: (event) =>
 		data = $(event.currentTarget).data('match')
 		resource = new AngellistExperience.Resource(data)
-
-		log.fatal('exploring', resource)
 
 		@model.roots.add(resource)
 		

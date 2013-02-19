@@ -6,7 +6,7 @@ class Header extends Backbone.View
         'click .reset': 'reset'
 
     initialize: =>
-        @model.on('change:summary', @updateSummary)
+        @model.roots.on('add remove reset', @updateSummary)
 
     render: =>
         @$el.html(@template())
@@ -19,8 +19,10 @@ class Header extends Backbone.View
     private
     ###
     updateSummary: =>
+        summary = "Exploring <strong>#{@model.roots.pluck('name').join(', ')}</strong>"
+
         $summary = @$el.find('.summary')
-        $summary.html(@model.get('summary'))
+        $summary.html(summary)
 
     more: =>
         @model.trigger('more')

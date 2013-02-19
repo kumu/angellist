@@ -5,9 +5,9 @@ class Model extends Backbone.Model
 
     initialize: =>
         @roots = new AngellistExperience.ResourceCollection()
+        @roots.on('add', @fetch)
 
         @reset()
-        @listen()
 
     reset: =>
         @blueprint = new Blueprint(AngellistExperience.blueprint)
@@ -19,13 +19,11 @@ class Model extends Backbone.Model
 
         @trigger('reset', @)
 
-    getSummary: =>
-        "Exploring <strong>#{@roots.pluck('name').join(', ')}</strong>"
-
     ###
     private
     ###
     initializeContext: =>
+        # should add setCurrent* helpers for this instead
         window.currentAccount = new Account({virtual: true})
         window.currentMembership = new Membership({role: 'observer'})
         window.able = new Able(currentMembership)
@@ -44,48 +42,19 @@ class Model extends Backbone.Model
             perspective: currentAccount.perspectives.at(0)
         })
 
-
-    listen: =>
-        @roots.on('add', @fetch)
-
     fetch: (resource) =>
-        # @set('summary', )
-        # @set({
-        #     status: "Exploring #{root.get(.label}..."
-        #     summary: @getSummary()
-        # })
-    
-        console.log("roots are", resource, @roots.models)
-
-        @trigger('search')
-
         @builder.fetch(resource)
             .done((element) =>
-                # @controller.status("Exploring <strong>#{_.pluck(@model.roots, 'name').join(', ')}</strong>")
-            
-                @explore(resource) # automatically start exploring the initial element
+                # got the details, now explore the connections
+                @explore(resource)
             )
             .fail((message) =>
                 @trigger('alert', message)
-                # @controller.fatal(message)
-
                 @roots.remove(resource)
             )
 
+    # explore the connections of the given resource
     explore: (resource) =>
-        log.fatal('exploring', resource)
-
-        @trigger('search')
-        
-        # modal update
-        @set({
-            status: "Exploring #{resource.get('name')}..."
-            summary: @getSummary()
-        })
-
-        # @controller.map.showMessage("Exploring #{element.label}...")
-
-        # expand on the selected element
         @builder.explore(resource)
 
 

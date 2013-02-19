@@ -11,14 +11,15 @@ class Experience extends Backbone.View
         # add our listeners
         $(window).on('resize', @resize)
         
-        Shortcuts.bind('ESCAPE', @onEscape)
+        Shortcuts.bind('ESCAPE', @switchToForm)
 
         @model = new AngellistExperience.Model()
-            .on('change:status', => @map.showMessage(@model.get('status')))
-            .on('search', @onSearch)
+            .on('alert', (error) => @switchToForm(error))
             .on('update', @onUpdate)
-            .on('more', @onMore)
+            .on('more', @switchToForm)
             .on('reset', @onReset)
+
+        @model.roots.on('add', @onSearch)
     
     render: =>
         @$el.html(@template())
@@ -33,7 +34,7 @@ class Experience extends Backbone.View
         @header.render()
 
         # show the form first
-        @showForm()
+        @switchToForm()
 
         @
 
@@ -55,29 +56,13 @@ class Experience extends Backbone.View
             .on('press', @onMapPress)
             .on('load', @onMapLoad)
     
-    status: (message) =>
-        # @view.graphView.showOverlay(message)
-        $('.status-message').html(message)
-    
-    # error should display message within the experience
-    error: (message) =>
-        @activateForm(message)
-    
-    # fatal halts the experience and returns user to the form with the given message
-    fatal: (message) =>
-        @activateForm(message)
-    
     resize: =>
         @map.resize()
 
-    again: =>
-        @experience.again?()
-        @activateForm()
+    onSearch: (resource) =>
+        @map.showMessage("Exploring #{resource.get('name')}...")
 
-    onSearch: =>
-        @map.showMessage(@model.get('status'))
-
-        @showMap()
+        @switchToMap()
 
     onUpdate: =>
         # first make the updates
@@ -100,26 +85,19 @@ class Experience extends Backbone.View
         # set the workspace as the new source
         @map.load(new WorkspaceSource(workspace))
 
-    onEscape: =>
-        # same as more
-        @showForm()
-
-    onMore: =>
-        @showForm()
-
     onReset: =>
         # then clear and reinitialize the old map
         @$el.find('.map').empty()
         @initializeMap()
 
         # first show the form
-        @showForm()
+        @switchToForm()
 
-    showForm: =>
+    switchToForm: (error) =>
         @$el.removeClass('active')
-        @form.show()
+        @form.show(error)
 
-    showMap: =>
+    switchToMap: =>
         @$el.addClass('active')
         @form.hide()
         
