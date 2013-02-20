@@ -8,8 +8,11 @@
 @able = new Able(@currentMembership)
 
 $(->
-	$experience = $('#experience')
+  if window.location.hash.match("vip")
+    $experience = $('#experience')
 
-	experience = new AngellistExperience.Experience({el: $experience})
-	experience.render()
+    experience = new AngellistExperience.Experience({el: $experience})
+    experience.render()
+  else
+    $('body').html("<h1 style='text-align:center;margin-top:100px'>404 <small>Not Found</small></h1>")
 )
