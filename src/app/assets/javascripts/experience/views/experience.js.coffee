@@ -53,7 +53,7 @@ class Experience extends Backbone.View
         
         # add our listeners
         @map.on('change:perspective', @renderPerspectiveMenu)
-            .on('press', @onMapPress)
+            .on('hold', @onMapHold)
             .on('load', @onMapLoad)
     
     resize: =>
@@ -103,7 +103,7 @@ class Experience extends Backbone.View
         
         @map.focus()
     
-    onMapPress: (event) =>
+    onMapHold: (event) =>
         component = event.component
 
         if component && component instanceof Node

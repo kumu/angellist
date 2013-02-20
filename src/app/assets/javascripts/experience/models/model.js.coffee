@@ -23,7 +23,7 @@ class Model extends Backbone.Model
     private
     ###
     initializeContext: =>
-        Context.build(@blueprint)
+        loadBlueprint(@blueprint)
 
         @mapModel = new MapModel({
             mode: 'experience'
